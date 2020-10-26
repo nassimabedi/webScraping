@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"io/ioutil"
 	"log"
@@ -159,13 +158,11 @@ func analyse(c *gin.Context) error {
 	pageURL := c.Query("q")
 	res, err := http.Get(pageURL)
 	if err != nil {
-		fmt.Println("11111111111111111111111111111111111111-----------------------")
 		log.Println(err)
 		return err
 	}
 	defer res.Body.Close()
 	if res.StatusCode != 200 {
-		fmt.Println("222222222222222222-----------------------")
 		log.Println("status code error: %d %s", res.StatusCode, res.Status)
 		return errors.New("not found : Page can not found")
 	}
@@ -179,19 +176,18 @@ func analyse(c *gin.Context) error {
 	}
 	host := u.Host
 
-	//doc, err := goquery.NewDocumentFromReader(body)
 	doc, err := goquery.NewDocument(pageURL)
 	if err != nil {
 		log.Println(err)
 		return err
 	}
 
+	//get HTML version
 	html, err := ioutil.ReadAll(body)
 	if err != nil {
 		log.Println(err)
 		return err
 	}
-
 	linkInfo.HTMLVersion = getHTMLVersion(string(html[:]))
 
 	// get page title
