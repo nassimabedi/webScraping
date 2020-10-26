@@ -1,0 +1,26 @@
+<br>
+<hr>
+<br>
+<b>HTML Version : {{ .linkInfo.HTMLVersion }}</b>
+<br>
+<b>Page Title: </b> {{ .pageTitle }}
+<br>
+<b></b>
+<h2>Headings count by level:</h2>
+<ul>
+    <li><b>Heading1Count: {{ .linkInfo.Heading1Count }}</b></li>
+    <li><b>    Heading2Count : {{ .linkInfo.Heading2Count }}</b></li>
+    <li><b>   Heading3Count: {{ .linkInfo.Heading3Count }}</b></li>
+    <li><b>    Heading4Count: {{ .linkInfo.Heading4Count }}</b></li>
+    <li><b>  Heading5Count: {{ .linkInfo.Heading5Count }}</b></li>
+    <li><b>  Heading6Count: {{ .linkInfo.Heading6Count }}</b></li>
+
+</ul>
+<br>
+<b>Amount of internal links:</b> {{ .linkInfo.AmountInternalLinks }}
+<br>
+<b>Amount of external links:</b> {{ .linkInfo.AmountExternalLinks }}
+<br>
+<b>Amount of inaccessible links:</b> {{ .linkInfo.AmountInaccessibleLinks }}
+<br>
+<b>Login Form: {{ .linkInfo.LoginForm }}</b>
