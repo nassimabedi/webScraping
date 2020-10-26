@@ -28,7 +28,7 @@ type pageInfo struct {
 	AmountExternalLinks     int
 	AmountInaccessibleLinks int
 	LoginForm               bool
-	Error error
+	Error                   error
 }
 
 var linkInfo pageInfo
@@ -76,7 +76,6 @@ func crawl(link, host string, wg *sync.WaitGroup) {
 
 }
 
-
 // getHTMLVersion godoc
 // @Summary GetHTMLVersion of the source of html
 // @Description GetHTMLVersion of the source of html
@@ -107,29 +106,29 @@ func getHTMLVersion(body string) string {
 // getHeadings godoc
 // @Summary get Heading by level source html
 // @Description get Heading by level in source html
-func getHeadings(doc *goquery.Document)  {
+func getHeadings(doc *goquery.Document) {
 	doc.Find("h1").Each(func(i int, s *goquery.Selection) {
-		linkInfo.Heading1Count = linkInfo.Heading1Count +1
+		linkInfo.Heading1Count = linkInfo.Heading1Count + 1
 	})
 
 	doc.Find("h2").Each(func(i int, s *goquery.Selection) {
-		linkInfo.Heading2Count = linkInfo.Heading2Count +1
+		linkInfo.Heading2Count = linkInfo.Heading2Count + 1
 	})
 
 	doc.Find("h3").Each(func(i int, s *goquery.Selection) {
-		linkInfo.Heading3Count = linkInfo.Heading3Count +1
+		linkInfo.Heading3Count = linkInfo.Heading3Count + 1
 	})
 
 	doc.Find("h4").Each(func(i int, s *goquery.Selection) {
-		linkInfo.Heading4Count = linkInfo.Heading4Count +1
+		linkInfo.Heading4Count = linkInfo.Heading4Count + 1
 	})
 
 	doc.Find("h5").Each(func(i int, s *goquery.Selection) {
-		linkInfo.Heading5Count = linkInfo.Heading5Count +1
+		linkInfo.Heading5Count = linkInfo.Heading5Count + 1
 	})
 
 	doc.Find("h6").Each(func(i int, s *goquery.Selection) {
-		linkInfo.Heading6Count = linkInfo.Heading6Count +1
+		linkInfo.Heading6Count = linkInfo.Heading6Count + 1
 	})
 
 }
@@ -137,7 +136,7 @@ func getHeadings(doc *goquery.Document)  {
 // hasLoginForm godoc
 // @Summary check if the page source has login form
 // @Description check if the page source has login form
-func hasLoginForm (doc *goquery.Document) bool {
+func hasLoginForm(doc *goquery.Document) bool {
 	var loginForm bool
 	doc.Find("body input").Each(func(_ int, item *goquery.Selection) {
 		itemId, _ := item.Attr("id")
@@ -218,8 +217,6 @@ func analyse(c *gin.Context) error {
 	return nil
 }
 
-
-
 func Search(c *gin.Context) {
 	err := analyse(c)
 	if err != nil {
@@ -238,6 +235,3 @@ func Search(c *gin.Context) {
 		},
 	)
 }
-
-
-
