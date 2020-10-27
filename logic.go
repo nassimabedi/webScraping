@@ -154,6 +154,9 @@ func hasLoginForm(doc *goquery.Document) bool {
 
 }
 
+// analyse godoc
+// @Summary analyse a web page for scraping
+// @Description analyse a web page for scraping
 func analyse(c *gin.Context) error {
 	pageURL := c.Query("q")
 	res, err := http.Get(pageURL)
@@ -213,6 +216,9 @@ func analyse(c *gin.Context) error {
 	return nil
 }
 
+// Search godoc
+// @Summary search a link to scrap it
+// @Description search a link to scrap it
 func Search(c *gin.Context) {
 	err := analyse(c)
 	if err != nil {
